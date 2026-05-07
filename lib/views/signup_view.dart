@@ -89,7 +89,7 @@ class _SignupViewState extends State<SignupView> {
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'Join our community of culinary enthusiasts\nand start your flavor journey.',
+                  'Join our community of Recipes\nand start your flavor journey.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
@@ -110,7 +110,7 @@ class _SignupViewState extends State<SignupView> {
                 TextFormField(
                   controller: _fullNameCtrl,
                   decoration: InputDecoration(
-                    hintText: 'John Doe',
+                    hintText: 'DADA ON FIRE',
                     filled: true,
                     fillColor: const Color(0xFFF5EDE9),
                     border: OutlineInputBorder(
@@ -136,7 +136,7 @@ class _SignupViewState extends State<SignupView> {
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    hintText: 'john@example.com',
+                    hintText: 'something@google.com',
                     filled: true,
                     fillColor: const Color(0xFFF5EDE9),
                     border: OutlineInputBorder(
