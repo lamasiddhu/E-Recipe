@@ -41,7 +41,7 @@ class _SplashViewState extends State<SplashView> {
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black,
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -70,18 +70,7 @@ class _SplashViewState extends State<SplashView> {
                 fontSize: 14,
               ),
             ),
-            const SizedBox(height: 30),
-            SizedBox(
-              width: 150,
-              child: LinearProgressIndicator(
-                value: 0.3,
-                backgroundColor: Colors.grey[300],
-                valueColor: const AlwaysStoppedAnimation<Color>(brandColor),
-                borderRadius: BorderRadius.circular(5),
-                minHeight: 3,
-              ),
-            ),
-            // ElevatedButton and its preceding SizedBox have been removed
+            // LinearProgressIndicator and its preceding SizedBox removed
           ],
         ),
       ),
