@@ -8,6 +8,15 @@ class OnboardingView extends StatefulWidget {
   State<OnboardingView> createState() => _OnboardingViewState();
 }
 
+class _OnboardingViewState extends State<OnboardingView> {
+  final PageController _controller = PageController();
+  int _currentPage = 0;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   void _skipToLogin() {
     Navigator.pushReplacement(
