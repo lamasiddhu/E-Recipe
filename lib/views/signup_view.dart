@@ -106,7 +106,7 @@ class _SignupViewState extends State<SignupView> {
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    hintText: 'john@example.com',
+                    hintText: 'something123@gmail.com',
                     filled: true,
                     fillColor: const Color(0xFFF5EDE9),
                     border: OutlineInputBorder(
