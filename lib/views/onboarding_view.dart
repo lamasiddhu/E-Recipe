@@ -68,7 +68,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     icon: Icons.restaurant_menu,
                     title: 'Discover Thousands of Recipes',
                     description:
-                        'Explore a vast collection of chef-curated recipes from around the world, tailored to your taste.',
+                        'Explore a vast collection of chef-curated recipes from around the world, find your taste.',
                     brandColor: brandColor,
                   ),
                   _buildPage(
@@ -82,7 +82,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     icon: Icons.shopping_cart,
                     title: 'Smart Shopping Lists',
                     description:
-                        'Auto-generate shopping lists from your favorite recipes and order ingredients with one tap.',
+                        'just one tap away from the recipes😉',
                     brandColor: brandColor,
                   ),
                 ],
