@@ -47,37 +47,7 @@ class _SignupViewState extends State<SignupView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 24),
-                Container(
-                  width: double.infinity,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                      image: NetworkImage(
-                        'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400',
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.network(
-                      'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400',
-                      fit: BoxFit.cover,
-                      errorBuilder: (c, e, s) => Container(
-                        color: Colors.grey[300],
-                        child: const Icon(
-                          Icons.kitchen,
-                          size: 64,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 48),
                 const Text(
                   'Create Account',
                   textAlign: TextAlign.center,
@@ -89,7 +59,7 @@ class _SignupViewState extends State<SignupView> {
                 ),
                 const SizedBox(height: 12),
                 const Text(
-                  'Join our community of Recipes\nand start your flavor journey.',
+                  'Join our community of culinary enthusiasts\nand start your flavor journey.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
@@ -110,7 +80,7 @@ class _SignupViewState extends State<SignupView> {
                 TextFormField(
                   controller: _fullNameCtrl,
                   decoration: InputDecoration(
-                    hintText: 'DADA ON FIRE',
+                    hintText: 'GARO SARAI GARO',
                     filled: true,
                     fillColor: const Color(0xFFF5EDE9),
                     border: OutlineInputBorder(
@@ -136,7 +106,7 @@ class _SignupViewState extends State<SignupView> {
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    hintText: 'something@google.com',
+                    hintText: 'john@example.com',
                     filled: true,
                     fillColor: const Color(0xFFF5EDE9),
                     border: OutlineInputBorder(
