@@ -8,9 +8,6 @@ class OnboardingView extends StatefulWidget {
   State<OnboardingView> createState() => _OnboardingViewState();
 }
 
-class _OnboardingViewState extends State<OnboardingView> {
-  final PageController _controller = PageController();
-  int _currentPage = 0;
 
   @override
   void dispose() {
