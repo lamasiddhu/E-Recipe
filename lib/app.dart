@@ -1,10 +1,17 @@
+import 'package:e_recipe/views/splash_view.dart';
 import 'package:flutter/material.dart';
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      title: 'Sprint1 Sample',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),
+      home: const SplashView(),
+    );
   }
 }
