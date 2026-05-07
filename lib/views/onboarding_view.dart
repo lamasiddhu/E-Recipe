@@ -9,12 +9,6 @@ class OnboardingView extends StatefulWidget {
 }
 
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   void _skipToLogin() {
     Navigator.pushReplacement(
       context,
