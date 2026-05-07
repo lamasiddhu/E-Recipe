@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:e_recipe/views/onboarding_view.dart' show OnboardingView;
+import 'package:e_recipe/views/onboarding_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
