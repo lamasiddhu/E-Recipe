@@ -8,22 +8,7 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
-  final List<Map<String, dynamic>> _chefSpecials = [
-    {
-      'title': 'MACHA KHANE HOOO',
-      'time': '20 min',
-      'rating': '4.9',
-      'tag': 'Healthy Choice',
-      'tagColor': Colors.green
-    },
-    {
-      'title': 'AYE PO BANAUNE',
-      'time': '35 min',
-      'rating': '4.8',
-      'tag': 'Premium',
-      'tagColor': Colors.orange
-    },
-  ];
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -88,13 +73,13 @@ class _DashboardViewState extends State<DashboardView> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _buildChip('All', isActive: true),
+                    _buildChip('All', true, brandColor),
                     const SizedBox(width: 10),
-                    _buildChip('Breakfast', isActive: false),
+                    _buildChip('Breakfast', false, brandColor),
                     const SizedBox(width: 10),
-                    _buildChip('Lunch', isActive: false),
+                    _buildChip('Lunch', false, brandColor),
                     const SizedBox(width: 10),
-                    _buildChip('Dinner', isActive: false),
+                    _buildChip('Dinner', false, brandColor),
                   ],
                 ),
               ),
@@ -116,75 +101,29 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 16),
 
-              // --- Chef's Specials Cards (FULL UI) ---
+              // --- Chef's Specials Cards (HARDCODED - Simple Style) ---
               SizedBox(
                 height: 220,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _chefSpecials.length,
-                  itemBuilder: (context, index) {
-                    final item = _chefSpecials[index];
-                    return Container(
-                      width: 260,
-                      margin: const EdgeInsets.only(right: 16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
-                            blurRadius: 10,
-                            offset: const Offset(0, 5),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 130,
-                            width: double.infinity,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFE8D9CC),
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                            ),
-                            child: const Center(child: Icon(Icons.restaurant, size: 50, color: Colors.white)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  item['title'],
-                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                ),
-                                const SizedBox(height: 4),
-                                Row(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                      decoration: BoxDecoration(
-                                        color: item['tagColor'],
-                                        borderRadius: BorderRadius.circular(4),
-                                      ),
-                                      child: Text(
-                                        item['tag'],
-                                        style: const TextStyle(color: Colors.white, fontSize: 10),
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    Icon(Icons.star, size: 14, color: brandColor),
-                                    Text(' ${item['rating']} • ${item['time']}'),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                child: Row(
+                  children: [
+                    _buildChefCard(
+                      title: 'MACHA KHANE HOOO',
+                      time: '20 min',
+                      rating: '4.9',
+                      tag: 'Healthy Choice',
+                      tagColor: Colors.green,
+                      brandColor: brandColor,
+                    ),
+                    const SizedBox(width: 16),
+                    _buildChefCard(
+                      title: 'AYE PO BANAUNE',
+                      time: '35 min',
+                      rating: '4.8',
+                      tag: 'Premium',
+                      tagColor: Colors.orange,
+                      brandColor: brandColor,
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 32),
@@ -236,19 +175,85 @@ class _DashboardViewState extends State<DashboardView> {
                   ],
                 ),
               ),
+              const SizedBox(height: 32),
+
+              // --- Trending Now ---
+              const Text(
+                'EASY TOO COOK NOW',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16),
+
+              // Row 1
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildTrendingCard(
+                      title: 'TARKARI',
+                      time: '12 mins',
+                      emoji: '🍲',
+                      brandColor: brandColor,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: _buildTrendingCard(
+                      title: 'MOMO',
+                      time: '25 mins',
+                      emoji: '🥟',
+                      brandColor: brandColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+
+              // Row 2
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildTrendingCard(
+                      title: 'BHAT',
+                      time: '15 mins',
+                      emoji: '🍚',
+                      brandColor: brandColor,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  const Expanded(child: SizedBox()),
+                ],
+              ),
+              const SizedBox(height: 40),
             ],
           ),
         ),
       ),
+
+      // --- Bottom Navigation ---
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) => setState(() => _selectedIndex = index),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: brandColor,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Discover'),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark_border), label: 'Saved'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
+        ],
+      ),
     );
   }
 
-  // Helper Widget for Category Chips
-  Widget _buildChip(String label, {required bool isActive}) {
+  // ✅ Simple helper: Category Chip (just like your LoginView helpers)
+  Widget _buildChip(String label, bool isActive, Color brandColor) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-        color: isActive ? const Color(0xFFB84715) : Colors.white,
+        color: isActive ? brandColor : Colors.white,
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: Colors.grey.shade300),
       ),
@@ -258,6 +263,135 @@ class _DashboardViewState extends State<DashboardView> {
           color: isActive ? Colors.white : Colors.grey.shade700,
           fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
         ),
+      ),
+    );
+  }
+
+  // ✅ Simple helper: Chef's Card (direct parameters, no Maps)
+  Widget _buildChefCard({
+    required String title,
+    required String time,
+    required String rating,
+    required String tag,
+    required Color tagColor,
+    required Color brandColor,
+  }) {
+    return Container(
+      width: 260,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 130,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color(0xFFE8D9CC),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            child: const Center(child: Icon(Icons.restaurant, size: 50, color: Colors.white)),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: tagColor,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        tag,
+                        style: const TextStyle(color: Colors.white, fontSize: 10),
+                      ),
+                    ),
+                    const Spacer(),
+                    Icon(Icons.star, size: 14, color: brandColor),
+                    Text(' $rating • $time'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ✅ Simple helper: Trending Card (direct parameters, no Maps)
+  Widget _buildTrendingCard({
+    required String title,
+    required String time,
+    required String emoji,
+    required Color brandColor,
+  }) {
+    return Container(
+      height: 180,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 5,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 100,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color(0xFFE0D5C8),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            ),
+            child: Center(child: Text(emoji, style: const TextStyle(fontSize: 40))),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  children: [
+                    Icon(Icons.access_time, size: 12, color: Colors.grey),
+                    Text(' $time', style: const TextStyle(fontSize: 10, color: Colors.grey)),
+                    const Spacer(),
+                    Icon(Icons.favorite_border, size: 12, color: Colors.grey),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
