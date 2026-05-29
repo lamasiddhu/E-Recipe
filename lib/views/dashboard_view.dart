@@ -8,7 +8,6 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
-  // NEW: Add data list
   final List<Map<String, dynamic>> _chefSpecials = [
     {
       'title': 'MACHA KHANE HOOO',
@@ -117,13 +116,14 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 16),
 
-              // --- NEW: Horizontal ListView Skeleton ---
+              // --- Chef's Specials Cards (FULL UI) ---
               SizedBox(
                 height: 220,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: _chefSpecials.length,
                   itemBuilder: (context, index) {
+                    final item = _chefSpecials[index];
                     return Container(
                       width: 260,
                       margin: const EdgeInsets.only(right: 16),
@@ -138,9 +138,102 @@ class _DashboardViewState extends State<DashboardView> {
                           ),
                         ],
                       ),
-                      child: const Center(child: Text('Card Placeholder')),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 130,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFE8D9CC),
+                              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                            ),
+                            child: const Center(child: Icon(Icons.restaurant, size: 50, color: Colors.white)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  item['title'],
+                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                ),
+                                const SizedBox(height: 4),
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: item['tagColor'],
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        item['tag'],
+                                        style: const TextStyle(color: Colors.white, fontSize: 10),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Icon(Icons.star, size: 14, color: brandColor),
+                                    Text(' ${item['rating']} • ${item['time']}'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
+                ),
+              ),
+              const SizedBox(height: 32),
+
+              // --- Promo Banner ---
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: brandColor,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'PREMIUM LENU HOS',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            'GET ACCESS TO MORE RECIPES',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: brandColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Text('GET PREMIUM'),
+                    ),
+                  ],
                 ),
               ),
             ],
