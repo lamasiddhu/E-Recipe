@@ -73,19 +73,82 @@ class _DashboardViewState extends State<DashboardView> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _buildChip('All', true, brandColor),
+                    // Chip 1: All
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: brandColor,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: const Text(
+                        'All',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     const SizedBox(width: 10),
-                    _buildChip('Breakfast', false, brandColor),
+
+                    // Chip 2: Breakfast
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: const Text(
+                        'Breakfast',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
                     const SizedBox(width: 10),
-                    _buildChip('Lunch', false, brandColor),
+
+                    // Chip 3: Lunch
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: const Text(
+                        'Lunch',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
                     const SizedBox(width: 10),
-                    _buildChip('Dinner', false, brandColor),
+
+                    // Chip 4: Dinner
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      child: const Text(
+                        'Dinner',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               const SizedBox(height: 24),
 
-              //Chef Specials Title
+              // Chef Specials Title
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -101,9 +164,9 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 16),
 
-              //Chef's Specials
+              // Chef's Specials 
               SizedBox(
-                height: 220,
+                height: 200,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -112,7 +175,7 @@ class _DashboardViewState extends State<DashboardView> {
                         title: 'MACHA KHANE HOOO',
                         brandColor: brandColor,
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 12),
                       _buildChefCard(
                         title: 'AYE PO BANAUNE',
                         brandColor: brandColor,
@@ -123,7 +186,7 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 32),
 
-              // banner
+              // Banner
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
@@ -172,7 +235,7 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 32),
 
-              // Trending 
+              // Trending
               const Text(
                 'EASY TOO COOK NOW',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -221,7 +284,7 @@ class _DashboardViewState extends State<DashboardView> {
         ),
       ),
 
-      //Bottom Navigation 
+      // Bottom Navigation
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) => setState(() => _selectedIndex = index),
@@ -240,32 +303,13 @@ class _DashboardViewState extends State<DashboardView> {
     );
   }
 
-  // Category Chip
-  Widget _buildChip(String label, bool isActive, Color brandColor) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      decoration: BoxDecoration(
-        color: isActive ? brandColor : Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.grey.shade300),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: isActive ? Colors.white : Colors.grey.shade700,
-          fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-    );
-  }
-
-  // CHef card
+  // Chef card 
   Widget _buildChefCard({
     required String title,
     required Color brandColor,
   }) {
     return Container(
-      width: 200,
+      width: 160, 
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -281,20 +325,20 @@ class _DashboardViewState extends State<DashboardView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 130,
+            height: 110, // ← Reduced from 130
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color(0xFFE8D9CC),
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
-            child: const Center(child: Icon(Icons.restaurant, size: 50, color: Colors.white)),
+            child: const Center(child: Icon(Icons.restaurant, size: 40, color: Colors.white)),
           ),
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(10), // ← Reduced padding
             child: Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-              maxLines: 1,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13), // ← Smaller font
+              maxLines: 2, // ← Allow 2 lines for long titles
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -303,7 +347,7 @@ class _DashboardViewState extends State<DashboardView> {
     );
   }
 
-  // EASY TOO CoOK SECtion
+  // Trending card 
   Widget _buildTrendingCard({
     required String title,
     required String emoji,
