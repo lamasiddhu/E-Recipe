@@ -23,7 +23,7 @@ class _DashboardViewState extends State<DashboardView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // --- Header ---
+              // HEADING
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -44,7 +44,7 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 20),
 
-              // --- Search Bar ---
+              // SEARCH BAR
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -68,7 +68,7 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 24),
 
-              // --- Category Chips ---
+              // ALL, LUNCH, DINNER, BREAKFAST
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -85,7 +85,7 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 24),
 
-              // --- Chef's Specials Title ---
+              //Chef Specials Title
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -101,34 +101,29 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 16),
 
-              // --- Chef's Specials Cards (HARDCODED - Simple Style) ---
+              //Chef's Specials
               SizedBox(
                 height: 220,
-                child: Row(
-                  children: [
-                    _buildChefCard(
-                      title: 'MACHA KHANE HOOO',
-                      time: '20 min',
-                      rating: '4.9',
-                      tag: 'Healthy Choice',
-                      tagColor: Colors.green,
-                      brandColor: brandColor,
-                    ),
-                    const SizedBox(width: 16),
-                    _buildChefCard(
-                      title: 'AYE PO BANAUNE',
-                      time: '35 min',
-                      rating: '4.8',
-                      tag: 'Premium',
-                      tagColor: Colors.orange,
-                      brandColor: brandColor,
-                    ),
-                  ],
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _buildChefCard(
+                        title: 'MACHA KHANE HOOO',
+                        brandColor: brandColor,
+                      ),
+                      const SizedBox(width: 16),
+                      _buildChefCard(
+                        title: 'AYE PO BANAUNE',
+                        brandColor: brandColor,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 32),
 
-              // --- Promo Banner ---
+              // banner
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
@@ -177,7 +172,7 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 32),
 
-              // --- Trending Now ---
+              // Trending 
               const Text(
                 'EASY TOO COOK NOW',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -190,7 +185,6 @@ class _DashboardViewState extends State<DashboardView> {
                   Expanded(
                     child: _buildTrendingCard(
                       title: 'TARKARI',
-                      time: '12 mins',
                       emoji: '🍲',
                       brandColor: brandColor,
                     ),
@@ -199,7 +193,6 @@ class _DashboardViewState extends State<DashboardView> {
                   Expanded(
                     child: _buildTrendingCard(
                       title: 'MOMO',
-                      time: '25 mins',
                       emoji: '🥟',
                       brandColor: brandColor,
                     ),
@@ -214,7 +207,6 @@ class _DashboardViewState extends State<DashboardView> {
                   Expanded(
                     child: _buildTrendingCard(
                       title: 'BHAT',
-                      time: '15 mins',
                       emoji: '🍚',
                       brandColor: brandColor,
                     ),
@@ -229,7 +221,7 @@ class _DashboardViewState extends State<DashboardView> {
         ),
       ),
 
-      // --- Bottom Navigation ---
+      //Bottom Navigation 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) => setState(() => _selectedIndex = index),
@@ -248,7 +240,7 @@ class _DashboardViewState extends State<DashboardView> {
     );
   }
 
-  // ✅ Simple helper: Category Chip (just like your LoginView helpers)
+  // Category Chip
   Widget _buildChip(String label, bool isActive, Color brandColor) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -267,17 +259,13 @@ class _DashboardViewState extends State<DashboardView> {
     );
   }
 
-  // ✅ Simple helper: Chef's Card (direct parameters, no Maps)
+  // CHef card
   Widget _buildChefCard({
     required String title,
-    required String time,
-    required String rating,
-    required String tag,
-    required Color tagColor,
     required Color brandColor,
   }) {
     return Container(
-      width: 260,
+      width: 200,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -303,33 +291,11 @@ class _DashboardViewState extends State<DashboardView> {
           ),
           Padding(
             padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: tagColor,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        tag,
-                        style: const TextStyle(color: Colors.white, fontSize: 10),
-                      ),
-                    ),
-                    const Spacer(),
-                    Icon(Icons.star, size: 14, color: brandColor),
-                    Text(' $rating • $time'),
-                  ],
-                ),
-              ],
+            child: Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -337,10 +303,9 @@ class _DashboardViewState extends State<DashboardView> {
     );
   }
 
-  // ✅ Simple helper: Trending Card (direct parameters, no Maps)
+  // EASY TOO CoOK SECtion
   Widget _buildTrendingCard({
     required String title,
-    required String time,
     required String emoji,
     required Color brandColor,
   }) {
@@ -370,25 +335,11 @@ class _DashboardViewState extends State<DashboardView> {
           ),
           Padding(
             padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(Icons.access_time, size: 12, color: Colors.grey),
-                    Text(' $time', style: const TextStyle(fontSize: 10, color: Colors.grey)),
-                    const Spacer(),
-                    Icon(Icons.favorite_border, size: 12, color: Colors.grey),
-                  ],
-                ),
-              ],
+            child: Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
