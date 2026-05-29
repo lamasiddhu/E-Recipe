@@ -31,7 +31,7 @@ class _DashboardViewState extends State<DashboardView> {
                     'E-Recipe',
                     style: TextStyle(
                       fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                      fontFamily: 'OpenSans Bold',
                       color: brandColor,
                     ),
                   ),
@@ -58,12 +58,17 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: 'MOMO KHANE ',
+                    hintText: 'MOMO ',
+                    hintStyle: const TextStyle(
+                      fontFamily: 'OpenSans Regular',
+                      color: Colors.grey,
+                    ),
                     prefixIcon: const Icon(Icons.search, color: Colors.grey),
                     suffixIcon: Icon(Icons.tune, color: brandColor),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(vertical: 15),
                   ),
+                  style: const TextStyle(fontFamily: 'OpenSans Regular'),
                 ),
               ),
               const SizedBox(height: 24),
@@ -85,7 +90,7 @@ class _DashboardViewState extends State<DashboardView> {
                         'All',
                         style: TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                          fontFamily: 'OpenSans Bold',
                         ),
                       ),
                     ),
@@ -103,7 +108,7 @@ class _DashboardViewState extends State<DashboardView> {
                         'Breakfast',
                         style: TextStyle(
                           color: Colors.grey,
-                          fontWeight: FontWeight.normal,
+                          fontFamily: 'OpenSans Regular',
                         ),
                       ),
                     ),
@@ -121,7 +126,7 @@ class _DashboardViewState extends State<DashboardView> {
                         'Lunch',
                         style: TextStyle(
                           color: Colors.grey,
-                          fontWeight: FontWeight.normal,
+                          fontFamily: 'OpenSans Regular',
                         ),
                       ),
                     ),
@@ -139,7 +144,7 @@ class _DashboardViewState extends State<DashboardView> {
                         'Dinner',
                         style: TextStyle(
                           color: Colors.grey,
-                          fontWeight: FontWeight.normal,
+                          fontFamily: 'OpenSans Regular',
                         ),
                       ),
                     ),
@@ -154,11 +159,18 @@ class _DashboardViewState extends State<DashboardView> {
                 children: [
                   const Text(
                     "Chef's Specials",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'OpenSans BOLD',
+                    ),
                   ),
                   Text(
                     'VIEW ALL',
-                    style: TextStyle(color: brandColor, fontSize: 12),
+                    style: TextStyle(
+                      color: brandColor,
+                      fontSize: 12,
+                      fontFamily: 'OpenSans SemiBold',
+                    ),
                   ),
                 ],
               ),
@@ -180,6 +192,13 @@ class _DashboardViewState extends State<DashboardView> {
                         title: 'AYE PO BANAUNE',
                         brandColor: brandColor,
                       ),
+                       const SizedBox(width: 12),
+                      _buildChefCard(
+                        title: 'AYE PO BANAUNE',
+                        brandColor: brandColor,
+                      ),
+                    
+                      
                     ],
                   ),
                 ),
@@ -205,7 +224,7 @@ class _DashboardViewState extends State<DashboardView> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              fontFamily: 'OpenSans Bold',
                             ),
                           ),
                           SizedBox(height: 4),
@@ -214,6 +233,7 @@ class _DashboardViewState extends State<DashboardView> {
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 12,
+                              fontFamily: 'OpenSans Regular',
                             ),
                           ),
                         ],
@@ -228,7 +248,10 @@ class _DashboardViewState extends State<DashboardView> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: const Text('GET PREMIUM'),
+                      child: const Text(
+                        'GET PREMIUM',
+                        style: TextStyle(fontFamily: 'OpenSans SemiBold'),
+                      ),
                     ),
                   ],
                 ),
@@ -238,7 +261,10 @@ class _DashboardViewState extends State<DashboardView> {
               // Trending
               const Text(
                 'EASY TOO COOK NOW',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'OpenSans Bold',
+                ),
               ),
               const SizedBox(height: 16),
 
@@ -260,6 +286,7 @@ class _DashboardViewState extends State<DashboardView> {
                       brandColor: brandColor,
                     ),
                   ),
+                  
                 ],
               ),
               const SizedBox(height: 16),
@@ -293,6 +320,8 @@ class _DashboardViewState extends State<DashboardView> {
         unselectedItemColor: Colors.grey,
         backgroundColor: Colors.white,
         elevation: 0,
+        selectedLabelStyle: const TextStyle(fontFamily: 'OpenSans SemiBold'),
+        unselectedLabelStyle: const TextStyle(fontFamily: 'OpenSans Regular'),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Discover'),
@@ -325,7 +354,7 @@ class _DashboardViewState extends State<DashboardView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 110, // ← Reduced from 130
+            height: 110,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color(0xFFE8D9CC),
@@ -334,11 +363,14 @@ class _DashboardViewState extends State<DashboardView> {
             child: const Center(child: Icon(Icons.restaurant, size: 40, color: Colors.white)),
           ),
           Padding(
-            padding: const EdgeInsets.all(10), // ← Reduced padding
+            padding: const EdgeInsets.all(10),
             child: Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13), // ← Smaller font
-              maxLines: 2, // ← Allow 2 lines for long titles
+              style: const TextStyle(
+                fontFamily: 'OpenSans Bold',
+                fontSize: 13,
+              ),
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -381,7 +413,10 @@ class _DashboardViewState extends State<DashboardView> {
             padding: const EdgeInsets.all(8),
             child: Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              style: const TextStyle(
+                fontFamily: 'OpenSans Bold',
+                fontSize: 14,
+              ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
